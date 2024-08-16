@@ -1,0 +1,431 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oldenburg&display=swap');
+
+
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #d4d4d4;
+}
+
+p{
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #003366;
+}
+
+.center-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tituloFont{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-size: 36px;
+    color: aliceblue;
+    letter-spacing: 4px;
+}
+
+.subTitle{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600!important;
+    font-size: 12px!important;
+    color: aliceblue!important;
+    letter-spacing: 2px;
+}
+
+.cabecario {
+    background-color: #003366; 
+    height: 100px; 
+    box-shadow: -1px 10px 15px rgba(0, 0, 0, 0.5); 
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
+}
+
+.cabecarioContainer{
+    grid-column: 2;
+
+    display: grid;
+    grid-template-columns: 4fr 3fr;
+}
+
+.cabecarioLogo{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    grid-column: 1;
+    margin-left: 20px;
+}
+
+.cabecarioLogo div{
+    text-align: center;
+}
+
+.cabecarioDesde{
+    margin-left: 15px;
+}
+
+.cabecarioDesde p{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: 12px;
+    color: aliceblue;
+    letter-spacing: 2px;
+
+}
+
+.cabecarioButoes{
+    grid-column: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: -65%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltiptext p {
+    color: whitesmoke;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.cabecarioButoes img{
+    width: 45px;
+}
+
+.cabecarioBotao {
+    background-color: #004080; 
+    color: #ffffff; 
+    border: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.cabecarioBotao:hover {
+    background-color: #02274d; 
+    transform: scale(1.09);
+}
+
+.botaoPedido {
+    background-color: #cf0000; 
+    height: 54px;
+}
+
+.botaoPedido:hover {
+    background-color: #960a18; 
+}
+
+.cabecarioBotao svg{
+    width: 30px;
+    height: 30px;
+}
+
+.cabecarioBandeiraBr {
+    transition: transform 0.3s ease-in-out;
+}
+
+.cabecarioBandeiraBr:hover {
+    transform: scale(1.3);
+}
+
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 6fr 1fr;
+    margin-bottom: 50px;
+}
+
+.main{
+    margin-top: 75px;
+    grid-column: 2;
+}
+
+.infoPrimaria{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 7%;
+}
+
+.numero1 img{
+    width: 80px;
+}
+
+.numero1 p{
+    font-size: 28px;
+    font-weight: 800;
+    padding-bottom: 5px;
+}
+
+.avaliadores{
+    font-size: 9px!important;
+    font-weight: 400!important;
+}
+
+.notaMaxima img{
+    width: 320px;
+}
+
+.notaMaxima p{
+    font-size: 28px;
+    font-weight: 800;
+    padding-bottom: 5px;
+}
+
+.cardMenor, .cardLinha1Faca, .cardLinha2Grande {
+    transition: transform 0.3s ease-in-out;
+}
+
+.cardMenor:hover, .cardLinha1Faca:hover, .cardLinha2Grande:hover {
+    transform: scale(1.05);
+}
+
+.cardLinha2Grande {
+    background-color: #003366;
+    height: 350px;
+    width: 530px;
+    border-radius: 20px;
+    box-shadow: -1px 10px 15px rgba(0, 0, 0, 0.5); 
+    padding: 15px;
+    cursor: pointer;
+}
+
+.cardLinha2Grande p {
+    color: white;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.linha2 > .cardLinha2Grande:nth-child(1) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.linha2 > .cardLinha2Grande:nth-child(2) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.cardMenor {
+    background-color: #960a18;
+    height: 450px;
+    width: 275px;
+    border-radius: 20px;
+    box-shadow: -1px 10px 15px rgba(0, 0, 0, 0.5); 
+    padding: 15px;
+    cursor: pointer;
+}
+
+.cardMenor img {
+    width: 200px;
+}
+
+.cardMenor p {
+    text-align: center;
+    color: white;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.cardMenorLogo {
+    align-items: end;
+    height: 330px;
+}
+
+.cardLinha1Faca {
+    background-color: #003366;
+    height: 450px;
+    width: 530px;
+    border-radius: 20px;
+    box-shadow: -1px 10px 15px rgba(0, 0, 0, 0.5); 
+    padding: 15px;
+    cursor: pointer;
+}
+
+.cardLinha1Faca p {
+    color: white;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.cardsPrincipais {
+    margin-bottom: 5.5%;
+    width: 100%;
+}
+
+.linha1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 100px;
+}
+
+.linha2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.cardMenor,
+.cardLinha1Faca {
+    transition: transform 0.3s ease-in-out;
+}
+
+.cardMenor:hover,
+.cardLinha1Faca:hover {
+    transform: scale(1.05);
+}
+
+
+.struturaFinal{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img{
+    width: 120px;
+}
+
+.bemVindo{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.bemVindoP{
+    width: 650px;
+}
+
+.bemVindo p{
+    font-size: 28px;
+    font-weight: 800;
+    padding-bottom: 5px;
+}
+
+.conheca{
+    background-color: #960a18;
+    height: 250px;
+    width: 530px;
+    border-radius: 20px;
+    box-shadow: -1px 10px 15px rgba(0, 0, 0, 0.5); 
+    padding: 12px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.conheca p{
+    color: wheat;
+    font-size: 24px;
+}
+
+.conheca:hover{
+    transform: scale(1.05);
+}
+
+.rodape {
+    background-color: #003366; 
+    height: 200px; 
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
+    padding: 20px;
+}
+
+.rodapeContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    grid-column: 2;
+}
+
+.rodape p{
+    color: wheat;
+    margin-bottom: 12px;
+}
+
+.contact{
+    margin-top: 10px;
+}
+
+.contact a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.contact a:hover {
+    color: #f4b31a;
+}
+
+.linksUteis{
+    display: flex;
+    justify-content: center;
+}
+
+.linksUteis ul {
+    list-style-type: none;
+    padding: 0;           
+    margin: 0;            
+}
+.linksUteis li {
+    margin-bottom: 10px; 
+    transition: 0.3s all ease-in;
+}
+
+.linksUteis li:hover {
+    transform: scale(1.08);
+}
+
+.linksUteis a{
+    color: #000; 
+    text-decoration: none;
+}
+
+.linksUteis a:hover {
+    color: #f4b31a;
+}
+
