@@ -489,6 +489,11 @@ input[type="number"]:focus {
     align-items: center;
     cursor: pointer;
     border-radius: 4px;
+    transition: all ease-in 0.3s;
+}
+
+.butaoDeslog:hover{
+    transform: scale(1.07);
 }
 
 .butaoDeslog p{
@@ -505,12 +510,57 @@ input[type="number"]:focus {
     margin-top: 20px;
     background-color: #02274d;
     border-radius: 10px;
-    padding: 22px;
+    height: 54px;
+    width: 175px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
     cursor: pointer;
+    transition: all 0.3s ease-in;
+}
+
+.addSaldo:hover{
+    transform: scale(1.05);
 }
 
 .addSaldo p{
     color: white;
+}
+
+#ftoDePerfil{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.alterarFTO{
+    margin-top: 16px;
+    background-color: #02274d;
+    width: 130px;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all ease-in 0.4s;
+}
+
+.alterarFTO:hover{
+    transform: scale(1.07);
+}
+
+.alterarFTO p{
+    color: white;
+    font-size: 14px;
+}
+
+#ftoDePerfilSem{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 

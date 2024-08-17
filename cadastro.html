@@ -182,8 +182,12 @@
                             </p>
                         </div>
                             <div>
-                                <div class="saldo">                                    
-                                    <p id="saldo"></p>
+                                <div class="saldo">     
+                                    <div class="center-center">
+                                        <p>R$&nbsp;
+                                            <p id="saldo"></p>
+                                        </p>
+                                    </div>                               
                                     <img src="assets/png_ejtpn.png" alt="" width="28px">
                                 </div>
                                 <div class="addSaldo" onclick="openModalSaldo()">
@@ -195,7 +199,18 @@
                             </div>
                     </div>
                     <div class="center-center" style="justify-content: flex-end;">
-                        <img src="" alt="" id="ftoDePerfil">
+                        <div class="center-center" style="flex-direction: column;">
+                            <p class="metodoPagP" style="font-weight: 800;">Sua foto!</p>
+                            <img id="ftoDePerfil" src="" alt="">
+                            <svg id="ftoDePerfilSem" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                            style="display: block; cursor: auto!important">
+                            <path
+                            d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z" />
+                            </svg>
+                            <div class="alterarFTO" onclick="openFileDialog()">
+                                <p id="alterarFTOp"></p>
+                            </div>
+                        </div>
                     </div>
                     <div class="center-center" style="align-items: flex-start;">
                         <div class="center-center butaoDeslog" onclick="deslogar()">     

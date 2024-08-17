@@ -9,15 +9,23 @@ let fotoBase64 = '';
 function onInit(){
     document.getElementById('fotoPreview').style.display = 'none';
     document.getElementById('fotoDefault').style.display = 'flex';
-    document.getElementById('saldoModal').style.display = 'none'
+    document.getElementById('saldoModal').style.display = 'none' 
     verificarLogin();
+    verificarSaldo();
     if (localStorage.getItem('isLogado') === 'true') {
         const nomeLogado = localStorage.getItem('nome');
         const base64Fto = localStorage.getItem('profilePic');
 
         if(base64Fto){
+            document.getElementById('ftoDePerfil').style.display = 'block' 
+            document.getElementById('ftoDePerfilSem').style.display = 'none' 
             const ftoPerfil = document.getElementById('ftoDePerfil');    
             ftoPerfil.src = base64Fto
+            document.getElementById('alterarFTOp').innerText = 'Alterar foto'
+        }else{
+            document.getElementById('ftoDePerfil').style.display = 'none' 
+            document.getElementById('ftoDePerfilSem').style.display = 'block'
+            document.getElementById('alterarFTOp').innerText = 'Adicionar foto' 
         }
         document.getElementById('nomeLogado').innerText = nomeLogado + '!'
     }
@@ -28,15 +36,15 @@ function openFileDialog() {
     input.type = 'file';
     input.accept = 'image/png, image/jpeg';
     input.style.display = 'none';
-    
-    input.addEventListener('change', handleFileSelect);
-    
+
+    const isLogado = localStorage.getItem('isLogado') === 'true';
+    input.addEventListener('change', isLogado ? handleFileSelectLogado : handleFileSelectNaoLogado);
     document.body.appendChild(input);
     input.click();
     document.body.removeChild(input);
 }
 
-function handleFileSelect(event) {
+function handleFileSelectNaoLogado(event) {
     const file = event.target.files[0];
     const fotoPreview = document.getElementById('fotoPreview');
     const fotoDefault = document.getElementById('fotoDefault');
@@ -50,9 +58,30 @@ function handleFileSelect(event) {
             fotoDefault.style.display = 'none';
             const imageDataUrl = reader.result;
             localStorage.setItem('profilePic', imageDataUrl);
-        };
-        
+        };        
         reader.readAsDataURL(file);
+        
+    } else {
+        fotoPreview.style.display = 'none';
+        fotoDefault.style.display = 'block';
+    }
+}
+
+function handleFileSelectLogado(event) {
+    const file = event.target.files[0];    
+    const ftoDePerfil = document.getElementById('ftoDePerfil');
+    const ftoDePerfilSem = document.getElementById('ftoDePerfilSem');
+    if (file) {
+        const reader = new FileReader();        
+        reader.onloadend = function () {
+            ftoDePerfil.src = reader.result; 
+            ftoDePerfil.style.display = 'block';
+            ftoDePerfilSem.style.display = 'none';
+            const imageDataUrl = reader.result;
+            localStorage.setItem('profilePic', imageDataUrl);
+        };        
+        reader.readAsDataURL(file);
+        
     } else {
         fotoPreview.style.display = 'none';
         fotoDefault.style.display = 'block';
@@ -96,6 +125,7 @@ function deslogar() {
     localStorage.removeItem('nome');
     localStorage.removeItem('isLogado');
     localStorage.removeItem('profilePic');
+    localStorage.removeItem('saldo');
     mostrarMsg('Sucesso ao deslogar!', 'sucesso');
     verificarLogin();
 }
@@ -150,6 +180,7 @@ function closeModal() {
     modal.style.display = 'none';
     dinheiro.value = ''; 
     paymentMethod.value = '';  
+    verificarSaldo()
 }
 
 document.getElementById('paymentMethod').addEventListener('change', function() {
@@ -187,3 +218,16 @@ window.addEventListener('click', function(event) {
         closeModal();
     }
 });
+
+function verificarSaldo() {
+    const saldo = localStorage.getItem('saldo');
+    let saldoFormatado = '00,00'; 
+    if (saldo) {
+        const saldoNumero = parseFloat(saldo);
+        saldoFormatado = saldoNumero.toLocaleString('pt-BR', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+    }
+    document.getElementById('saldo').innerText = saldoFormatado;
+}
