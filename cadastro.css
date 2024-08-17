@@ -402,6 +402,12 @@ input[type="password"]:focus {
     cursor: pointer;
 }
 
+#cameraIcon{
+    width: 20px;
+    height: 20px;
+    margin-bottom: 14px;
+}
+
 
 .rodape {
     background-color: #003366; 
