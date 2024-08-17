@@ -9,6 +9,7 @@ let fotoBase64 = '';
 function onInit(){
     document.getElementById('fotoPreview').style.display = 'none';
     document.getElementById('fotoDefault').style.display = 'flex';
+    document.getElementById('saldoModal').style.display = 'none'
     verificarLogin();
     if (localStorage.getItem('isLogado') === 'true') {
         const nomeLogado = localStorage.getItem('nome');
@@ -18,7 +19,7 @@ function onInit(){
             const ftoPerfil = document.getElementById('ftoDePerfil');    
             ftoPerfil.src = base64Fto
         }
-        document.getElementById('nomeLogado').innerText = nomeLogado
+        document.getElementById('nomeLogado').innerText = nomeLogado + '!'
     }
 }
 
@@ -135,3 +136,54 @@ function verificarSenha(senha1) {
     }
     return true;
 }
+
+function openModalSaldo() {
+    document.getElementById('saldoModal').style.display = 'block';
+    document.getElementById('amountContainer').style.display  = 'none';
+}
+
+function closeModal() {
+    var modal = document.getElementById('saldoModal');
+    var dinheiro = document.getElementById('dinheiro');
+    var paymentMethod = document.getElementById('paymentMethod');
+
+    modal.style.display = 'none';
+    dinheiro.value = ''; 
+    paymentMethod.value = '';  
+}
+
+document.getElementById('paymentMethod').addEventListener('change', function() {
+    var amountContainer = document.getElementById('amountContainer');
+    let adicionarSaldoBtn = document.getElementById('adicionarSaldoBtn');
+    if (this.value) {
+        amountContainer.style.display = 'flex';
+        adicionarSaldoBtn.style.display = 'block';
+    } else {
+        amountContainer.style.display = 'none';
+        adicionarSaldoBtn.style.display = 'none';
+    }
+});
+
+function addSaldo() {
+    var dinheiro = document.getElementById('dinheiro');
+    var dinheiroValue = parseFloat(dinheiro.value);
+    var saldoLocal = parseFloat(localStorage.getItem('saldo')) || 0;
+    var saldoFinal = saldoLocal + dinheiroValue;
+
+    localStorage.setItem('saldo', saldoFinal);
+    mostrarMsg('Saldo adicionado com sucesso!', 'sucesso');
+
+    closeModal();
+}
+
+document.getElementById('dinheiro').addEventListener('input', function() {
+    var value = this.value;
+    this.value = value.replace(/[^0-9]/g, '').slice(0, 4);
+});
+
+window.addEventListener('click', function(event) {
+    var modal = document.getElementById('saldoModal');
+    if (event.target === modal) {
+        closeModal();
+    }
+});

@@ -173,18 +173,70 @@
 
 
 
-            <div class="cadastrado" ngIf="cadastrado" style="display: none;">
-                <img src="" alt="" id="ftoDePerfil">
-                <p onclick="deslogar()">Deslogar</p>
-                <p id="nomeUsuario">Olá,
-                    <span id="nomeLogado"></span>
-                </p>
+            <div class="cadastrado" style="display: none;">
+                <div class="containerCadastrado">
+                    <div class="apresentação">
+                        <div class="ola">
+                            <p id="nomeUsuario">Olá,&nbsp;
+                                <p id="nomeLogado"></p>
+                            </p>
+                        </div>
+                            <div>
+                                <div class="saldo">                                    
+                                    <p id="saldo"></p>
+                                    <img src="assets/png_ejtpn.png" alt="" width="28px">
+                                </div>
+                                <div class="addSaldo" onclick="openModalSaldo()">
+                                    <p>Adicionar saldo</p>
+                                </div>                                
+                            </div>
+                            <div>
+    
+                            </div>
+                    </div>
+                    <div class="center-center" style="justify-content: flex-end;">
+                        <img src="" alt="" id="ftoDePerfil">
+                    </div>
+                    <div class="center-center" style="align-items: flex-start;">
+                        <div class="center-center butaoDeslog" onclick="deslogar()">     
+                            <p>Deslogar</p>
+                        </div>
+                    </div>
+                </div>
 
 
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="saldoModal" class="modalSaldo">
+        <div class="containerModalSaldo">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p class="addSaldoP">Adicionar Saldo</p>
+            <p class="metodoPagP">Método de Pagamento:</p>
+            <div class="center-center" style="flex-direction: column;">
+                <select id="paymentMethod">
+                    <option value="">Selecione</option>
+                    <option value="pix">PIX</option>
+                    <option value="cartaoDebito">Cartão de Débito</option>
+                    <option value="cartaoCredito">Cartão de Crédito</option>
+                    <option value="boleto">Boleto</option>
+                </select>
+                <div id="amountContainer" style="display: none;">
+                    <p class="metodoPagP">Valor</p>
+                    <div class="center-center" style="flex-direction: row; margin-bottom: 20px;">
+                        <p>R$</p>
+                        <input type="number" id="dinheiro" class="dinheiroInput"/>
+                    </div>
+                    <button id="adicionarSaldoBtn" onclick="addSaldo()" style="display: none;">Adicionar</button>
+                </div>
             </div>
         </div>
     </div>
     
+
 
     <div class="rodape">
         <div class="rodapeContainer">
