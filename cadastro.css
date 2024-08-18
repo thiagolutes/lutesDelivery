@@ -483,6 +483,7 @@ input[type="number"]:focus {
 .butaoDeslog{
     background-color: #960a18;
     width: 100px;
+    padding: 3px;
     height: 35px;
     display: flex;
     justify-content: center;
@@ -532,6 +533,11 @@ input[type="number"]:focus {
     height: 200px;
     object-fit: cover;
     border-radius: 50%;
+    transition: all ease-in-out 0.3s;
+}
+
+#ftoDePerfil:hover{
+    transform: scale(1.12);
 }
 
 .alterarFTO{

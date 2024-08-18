@@ -22,10 +22,12 @@ function onInit(){
             const ftoPerfil = document.getElementById('ftoDePerfil');    
             ftoPerfil.src = base64Fto
             document.getElementById('alterarFTOp').innerText = 'Alterar foto'
+            document.getElementById('hasFto').innerText = 'Sua foto!'
         }else{
             document.getElementById('ftoDePerfil').style.display = 'none' 
             document.getElementById('ftoDePerfilSem').style.display = 'block'
             document.getElementById('alterarFTOp').innerText = 'Adicionar foto' 
+            document.getElementById('hasFto').innerText = 'Coloque uma foto!'
         }
         document.getElementById('nomeLogado').innerText = nomeLogado + '!'
     }
@@ -44,23 +46,58 @@ function openFileDialog() {
     document.body.removeChild(input);
 }
 
+function compressImage(file, callback) {
+    const reader = new FileReader();
+    reader.onload = function (event) {
+        const img = new Image();
+        img.onload = function () {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const MAX_WIDTH = 800;
+            const MAX_HEIGHT = 800;
+            let width = img.width;
+            let height = img.height;
+
+            if (width > height) {
+                if (width > MAX_WIDTH) {
+                    height *= MAX_WIDTH / width;
+                    width = MAX_WIDTH;
+                }
+            } else {
+                if (height > MAX_HEIGHT) {
+                    width *= MAX_HEIGHT / height;
+                    height = MAX_HEIGHT;
+                }
+            }
+            canvas.width = width;
+            canvas.height = height;
+            ctx.drawImage(img, 0, 0, width, height);
+            canvas.toBlob(function (blob) {
+                callback(blob);
+            }, 'image/jpeg', 0.7);
+        };
+        img.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
+}
+
 function handleFileSelectNaoLogado(event) {
     const file = event.target.files[0];
     const fotoPreview = document.getElementById('fotoPreview');
     const fotoDefault = document.getElementById('fotoDefault');
     
     if (file) {
-        const reader = new FileReader();
-        
-        reader.onloadend = function () {
-            fotoPreview.src = reader.result; 
-            fotoPreview.style.display = 'block';
-            fotoDefault.style.display = 'none';
-            const imageDataUrl = reader.result;
-            localStorage.setItem('profilePic', imageDataUrl);
-        };        
-        reader.readAsDataURL(file);
-        
+        compressImage(file, function (compressedBlob) {
+            const reader = new FileReader();
+            reader.onloadend = function () {
+                const imageDataUrl = reader.result;
+                localStorage.setItem('profilePic', imageDataUrl);
+                fotoPreview.src = imageDataUrl;
+                fotoPreview.style.display = 'block';
+                fotoDefault.style.display = 'none';
+            };
+            reader.readAsDataURL(compressedBlob);
+        });
     } else {
         fotoPreview.style.display = 'none';
         fotoDefault.style.display = 'block';
@@ -68,25 +105,31 @@ function handleFileSelectNaoLogado(event) {
 }
 
 function handleFileSelectLogado(event) {
-    const file = event.target.files[0];    
+    const file = event.target.files[0];
     const ftoDePerfil = document.getElementById('ftoDePerfil');
     const ftoDePerfilSem = document.getElementById('ftoDePerfilSem');
+    
     if (file) {
-        const reader = new FileReader();        
-        reader.onloadend = function () {
-            ftoDePerfil.src = reader.result; 
-            ftoDePerfil.style.display = 'block';
-            ftoDePerfilSem.style.display = 'none';
-            const imageDataUrl = reader.result;
-            localStorage.setItem('profilePic', imageDataUrl);
-        };        
-        reader.readAsDataURL(file);
-        
+        compressImage(file, function (compressedBlob) {
+            const reader = new FileReader();
+            reader.onloadend = function () {
+                const imageDataUrl = reader.result;
+                localStorage.setItem('profilePic', imageDataUrl);
+                ftoDePerfil.src = imageDataUrl;
+                ftoDePerfil.style.display = 'block';
+                ftoDePerfilSem.style.display = 'none';
+                document.getElementById('hasFto').innerText = 'Sua foto!'
+            };
+            reader.readAsDataURL(compressedBlob);
+        });
     } else {
-        fotoPreview.style.display = 'none';
-        fotoDefault.style.display = 'block';
+        ftoDePerfil.style.display = 'none';
+        ftoDePerfilSem.style.display = 'block';
+        document.getElementById('hasFto').innerText = 'Coloque uma foto!'
+
     }
 }
+
 
 function mostrarMsg(message, type) {
     var messageElement = document.getElementById('message');

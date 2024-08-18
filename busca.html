@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delivery</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="busca.css">
 </head>
 <body>
-
     <div class="cabecario">
         <div class="cabecarioContainer">
             <div class="cabecarioLogo">
@@ -76,81 +75,49 @@
 
     <div class="container">
         <div class="main">
-            <div class="infoPrimaria">
-                <div class="numero1 center-center">
-                    <img src="assets/numero1.png" alt="">
-                    <div>
-                        <p>Delivery número 1 no Brasil!</p>
-                        <p class="avaliadores">*Avaliador por avaliadores que avaliam*</p>
+            <div class="buscar">
+                <p>Busque pelo nome:</p>
+                <div class="input-container">
+                    <input type="text" id="search-input" placeholder="Busque...">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="input-icon">
+                        <path fill="#02274d" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
+                    </svg>
+                </div>                  
+            </div>
+            <div class="categories">
+                <div class="categoria">
+                    <div class="titleCategoria">
+                        <p>Hambúrgueres</p>
                     </div>
+                    <div class="containerProdutos" id="containerHamburgers"></div>
                 </div>
-                <div class="notaMaxima">
-                    <div class="center-center">
-                        <img src="assets/stars.png" alt="">
+                <div class="categoria">
+                    <div class="titleCategoria">
+                        <p>Milkshakes</p>
                     </div>
-                    <p>Nota máxima em avalições!</p>
+                    <div class="containerProdutos" id="containerMilkshakes"></div>
+                </div>
+                <div class="categoria">
+                    <div class="titleCategoria">
+                        <p>Salgados</p>
+                    </div>
+                    <div class="containerProdutos" id="containerSalgados"></div>
+                </div>
+                <div class="categoria">
+                    <div class="titleCategoria">
+                        <p>Legumes</p>
+                    </div>
+                    <div class="containerProdutos" id="containerLegumes"></div>
+                </div>
+                <div class="categoria">
+                    <div class="titleCategoria">
+                        <p>Biscoitos</p>
+                    </div>
+                    <div class="containerProdutos" id="containerBiscoitos"></div>
                 </div>
             </div>
-
-            <div class="center-center">
-                <div class="cardsPrincipais">
-                    <div class="linha1">
-                        <div class="cardMenor" onclick="window.location.href='quem-somos.html'">
-                            <p>Conheça nossa historia!</p>
-                            <div class="center-center cardMenorLogo">
-                                <div>
-                                    <p style="Margin-bottom: 0px!important" class="tituloFont">LUTES</p>
-                                    <p class="subTitle" >Delivery</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cardLinha1Faca">
-                            <div class="center-center">
-                                <p>Faça já seu pedido!</p>
-                            </div>
-                            <div class="center-center" style="margin-top: 60px;">
-                                <img src="assets/delivery-man (1).png" alt="" width="300px">                            
-                            </div>
-                        </div>                        
-                        <div class="cardMenor" onclick="window.location.href='busca.html'">
-                            <p>Buscar produtos!</p>
-                            <div class="center-center" style="margin-top: 50px;">
-                                <img src="assets/burger.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="linha2">
-                        <div class="cardLinha2Grande" onclick="window.location.href='cadastro.html'">
-                            <p style="margin-bottom: 15px;">Acesse seu perfil!</p>
-                            <img src="assets/vecteezy_contact-person-red-icon_8506404.png" alt="" width="250px">                            
-                        </div> 
-                        <div class="cardLinha2Grande" onclick="window.location.href='contato.html'">
-                            <p style="margin-bottom: 15px;">Trabalhe conosco!</p>
-                            <img src="assets/delivery-man (2).png" alt="" width="250px">                            
-                        </div> 
-                    </div>
-                </div>                
-            </div>
-            
-            <div class="struturaFinal">
-                <div class="bemVindo">
-                    <div class="bemVindoP">
-                        <p>Descubra o melhor delivery nacional com um clique!</p>
-                        <p>Serviço de excelência com entregas em todo o território brasileiro.</p>
-                    </div>
-                </div>
-                <div class="conheca"  onclick="window.location.href='lojas.html'">
-                    <div class="center-center">
-                        <p>Conheça nossas lojas fisicas!</p>
-                    </div>
-                    <div class="center-center">                    
-                        <img src="assets/9198446.png" alt="" width="220px">
-                    </div>
-                </div>
-            </div>
-           
-        </div>
-    </div>
+        </div>            
+    </div>  
 
     <div class="rodape">
         <div class="rodapeContainer">
@@ -248,9 +215,7 @@
             </div>
         </div>
     </div>
-    
 
-    
-    
+    <script src="busca.js"></script>
 </body>
 </html>
