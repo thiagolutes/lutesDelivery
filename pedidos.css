@@ -168,7 +168,6 @@ p{
 }
 
 
-/* styles.css */
 .container {
     display: grid;
     grid-template-columns: 1fr 6fr 1fr;
@@ -180,195 +179,102 @@ p{
     grid-column: 2;
 }
 
-.buscar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.buscar p {
-    font-size: 38px;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-}
-
-.input-container {
-    margin-top: 20px;
-    position: relative;
-    width: 380px;
-    margin-bottom: 50px;
-}
-
-#search-input {
-    width: 100%;
-    padding: 10px 40px 10px 10px;
-    border-color: #03203d;
-    border-radius: 16px;
-    box-sizing: border-box;
-    height: 40px;
-    transition: all 0.3s ease-in-out;
-}
-
-#search-input:focus {
-    border-color: #03203d;
-    outline: none;
-    box-shadow: 0 0 8px rgba(0, 64, 128, 0.3);
-}
-
-.input-icon {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    width: 24px;
-    height: 24px;
-    fill: #02274d;
-}
-
-.categories {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    padding: 20px;
-}
-
-.categoria {
+#produtoSelecionado {
     margin-bottom: 30px;
 }
 
-.titleCategoria {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.titleCategoria p {
-    font-size: 32px;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-    margin-bottom: 30px;
-}
-
-.containerProdutos {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 30px;
+#recomendacoes {
+    margin-top: 30px;
 }
 
 .card {
-    background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
-    overflow: hidden;
+    padding: 15px;
+    margin: 10px;
+    display: inline-block;
+    width: 200px;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 250px;
-    height: 320px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    transition: all 0.3s ease-in-out;
-    cursor: pointer;
-    position: relative;
-}
-
-.card:hover {
-    transform: scale(1.08);
 }
 
 .card img {
-    width: 87%;
-    height: 56%;
-    object-fit: cover;
+    max-width: 100%;
+    border-radius: 8px;
 }
 
 .card-content {
-    padding: 10px;
-    height: 100px;
+    margin-top: 10px;
 }
 
 .card-title {
-    font-size: 16px;
-    font-weight: 700;
-    font-family: "Montserrat", sans-serif;
-    color: #003366;
-    margin-bottom: 12px;
-}
-
-.card-price {
-    font-weight: 700;
-    font-family: "Montserrat", sans-serif;
-    font-size: 16px;
-    color: #003366;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .price-container {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+    margin-top: 10px;
 }
 
-.price-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.card-price.original {
-    text-decoration: line-through;
-    color: #888;
-}
-
-.discount-percentage {
-    font-family: "Montserrat", sans-serif;
+.card-price {
     font-size: 16px;
-    color: green;
-    font-weight: bold;
 }
 
-.card-price.discounted {
-    font-size: 20px;
-    color: #003366;
-    font-weight: bold;
+.discounted {
+    color: red;
+}
+
+.original {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.card-disabled {
+    opacity: 0.5;
+    pointer-events: none;
 }
 
 .card-hover {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(119, 6, 6, 0.911);
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    font-weight: bold;
-    text-transform: uppercase;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-    text-align: center;
-    padding: 10px;
+    display: none;
+}
+
+.card:hover .card-hover {
+    display: block;
 }
 
 .card-hover span {
     display: block;
-    margin-bottom: 10px;
-    font-family: "Montserrat", sans-serif;
-    font-size: 22px;
-    color: #FFF;
-    font-weight: 700;
+    margin: 5px 0;
 }
 
-.card:hover .card-hover {
-    opacity: 1;
+.selected-message {
+    color: gray;
+    font-size: 14px;
+    margin-top: 5px;
 }
+
+.pedido {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.pedido-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.pedido-nome {
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.pedido-preco {
+    margin-left: auto;
+    color: red;
+}
+
 
 
 .rodape {
@@ -431,4 +337,3 @@ p{
 .linksUteis a:hover {
     color: #f4b31a;
 }
-

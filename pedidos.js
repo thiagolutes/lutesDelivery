@@ -39,10 +39,10 @@ const produtos = {
     ]
 };
 
-function criarCard(produto, categoriaId) {
+function criarCard(produto, isRecomendacao = false) {
     const card = document.createElement('div');
     card.className = 'card';
-    card.dataset.id = produto.id; // Adiciona o ID ao dataset do card
+    card.dataset.id = produto.id;
 
     const img = document.createElement('img');
     img.src = produto.imagem;
@@ -92,80 +92,65 @@ function criarCard(produto, categoriaId) {
     card.appendChild(img);
     card.appendChild(cardContent);
 
-    const cardHover = document.createElement('div');
-    cardHover.className = 'card-hover';
-    
-    const pedir = document.createElement('span');
-    pedir.textContent = 'Pedir';
-    
-    const nome = document.createElement('span');
-    nome.textContent = produto.nome;
-
-    cardHover.appendChild(pedir);
-    cardHover.appendChild(nome);
-    
-    card.appendChild(cardHover);
-
     card.addEventListener('click', () => {
-        localStorage.setItem('idProduto', produto.id);
-        window.location.href='pedidos.html'
-    });
-
-    const container = document.getElementById(categoriaId);
-    container.appendChild(card);
-}
-
-function exibirProdutos(produtosFiltrados) {
-    const containers = {
-        hamburgers: document.getElementById('containerHamburgers'),
-        milkshakes: document.getElementById('containerMilkshakes'),
-        salgados: document.getElementById('containerSalgados'),
-        legumes: document.getElementById('containerLegumes'),
-        biscoitos: document.getElementById('containerBiscoitos')
-    };
-
-    let exibeAlgumaCategoria = false;
-
-    Object.keys(containers).forEach(categoria => {
-        const container = containers[categoria];
-        const produtosCategoria = produtosFiltrados[categoria];
-
-        if (produtosCategoria.length > 0) {
-            container.innerHTML = '';
-            produtosCategoria.forEach(produto => {
-                criarCard(produto, `container${categoria.charAt(0).toUpperCase() + categoria.slice(1)}`);
-            });
-            container.parentElement.style.display = 'block';
-            exibeAlgumaCategoria = true;
+        if (isRecomendacao) {
+            const produtosRecomendados = JSON.parse(localStorage.getItem('produtosRecomendados')) || [];
+            if (!produtosRecomendados.some(p => p.id === produto.id)) {
+                produtosRecomendados.push(produto);
+                localStorage.setItem('produtosRecomendados', JSON.stringify(produtosRecomendados));
+            }
+            alert('Produto adicionado às recomendações!');
         } else {
-            container.innerHTML = '';
-            container.parentElement.style.display = 'none'; 
+            alert('Produto adicionado ao carrinho!');
         }
     });
 
-    const mainContent = document.querySelector('.main');
-    mainContent.style.display = exibeAlgumaCategoria ? 'block' : 'none';
+    return card;
 }
 
-function filtrarProdutos(digitado) {
-    const produtosFiltrados = {
-        hamburgers: produtos.hamburgers.filter(p => p.nome.toLowerCase().includes(digitado.toLowerCase())),
-        milkshakes: produtos.milkshakes.filter(p => p.nome.toLowerCase().includes(digitado.toLowerCase())),
-        salgados: produtos.salgados.filter(p => p.nome.toLowerCase().includes(digitado.toLowerCase())),
-        legumes: produtos.legumes.filter(p => p.nome.toLowerCase().includes(digitado.toLowerCase())),
-        biscoitos: produtos.biscoitos.filter(p => p.nome.toLowerCase().includes(digitado.toLowerCase()))
-    };
+function exibirProdutoSelecionado(id) {
+    id = Number(id);
+    const categorias = Object.values(produtos).flat();
+    const produto = categorias.find(p => p.id === id);
 
-    exibirProdutos(produtosFiltrados);
+    const produtoSelecionado = document.getElementById('produtoSelecionado');
+
+    if (produto) {
+        const card = criarCard(produto);
+        produtoSelecionado.innerHTML = ''; // Clear existing content
+        produtoSelecionado.appendChild(card);
+    } else {
+        produtoSelecionado.innerHTML = '<p>Produto não encontrado.</p>';
+    }
 }
 
-let timer;
-document.getElementById('search-input').addEventListener('input', (e) => {
-    const digitado = e.target.value;
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-        filtrarProdutos(digitado);
-    }, 500);
+function exibirRecomendacoes() {
+    const categorias = Object.values(produtos).flat();
+    const recomendacoes = [];
+    while (recomendacoes.length < 3) {
+        const randomIndex = Math.floor(Math.random() * categorias.length);
+        const produto = categorias[randomIndex];
+        if (!recomendacoes.includes(produto)) {
+            recomendacoes.push(produto);
+        }
+    }
+
+    const cardsContainer = document.getElementById('cardsContainer');
+    cardsContainer.innerHTML = '';
+    recomendacoes.forEach(produto => {
+        const card = criarCard(produto, true); // Set isRecomendacao to true
+        cardsContainer.appendChild(card);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    let idProduto = localStorage.getItem('idProduto');
+    
+    if (idProduto) {
+        exibirProdutoSelecionado(idProduto);
+    } else {
+        document.getElementById('produtoSelecionado').innerHTML = '<p>Carrinho vazio.</p>';
+    }
+
+    exibirRecomendacoes();
 });
-
-exibirProdutos(produtos);
